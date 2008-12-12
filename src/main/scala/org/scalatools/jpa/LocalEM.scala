@@ -23,6 +23,11 @@ import _root_.javax.persistence.{EntityManager,Persistence}
  * used in an environment that doesn't support JNDI.
  */
 abstract class LocalEM(val name : String, val userTx : Boolean) extends ScalaEntityManager {
+  
+  /**
+   * Creates a new EM manager that handles its own transactions.
+   */
+  def this(nm : String) = this(nm, false)
 
   // The underlying entitymanager factory
   val emf = Persistence.createEntityManagerFactory(name)

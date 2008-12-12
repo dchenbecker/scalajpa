@@ -57,6 +57,11 @@
       <name>Scala-Tools Maven2 Repository</name>
       <url>http://scala-tools.org/repo-releases</url>
     </repository>
+    <repository>
+      <id>scala-tools.org-snapshot</id>
+      <name>Scala-Tools Maven2 Snapshot Repository</name>
+      <url>http://scala-tools.org/repo-snapshots</url>
+    </repository>
   </repositories>
 
   <pluginRepositories>
@@ -89,12 +94,26 @@
       <groupId>javax.persistence</groupId>
       <artifactId>persistence-api</artifactId>
       <version>1.0</version>
+      <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>geronimo-spec</groupId>
       <artifactId>geronimo-spec-jta</artifactId>
       <version>1.0-M1</version>
+      <scope>provided</scope>
     </dependency> 
+    <dependency>
+      <groupId>net.liftweb</groupId>
+      <artifactId>lift-core</artifactId>
+      <version>0.10-SNAPSHOT</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>net.liftweb</groupId>
+      <artifactId>lift-util</artifactId>
+      <version>0.10-SNAPSHOT</version>
+      <scope>test</scope>
+    </dependency>
   </dependencies>
 
   <build>
