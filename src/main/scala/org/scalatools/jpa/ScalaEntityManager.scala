@@ -1,5 +1,5 @@
 /*
- * Copyright 2008 WorldWide Conferencing, LLC
+ * Copyright 2008 Derek Chen-Becker
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,30 +18,21 @@ package org.scalatools.jpa
 import _root_.javax.persistence._
 
 /**
- * This class represents a Scalafied version of the standard EntityManager
+ * <p>
+ * This trait represents a Scalafied version of the standard EntityManager
  * in JPA. In particular, queries are more type-safe and the find method
  * returns an Option instead of possibly throwing an exception if the
  * entity isn't found.
+ * </p>
+ *
+ * <p>
+ * If you wish to provide a concrete implementation of this trait, you
+ * only need to provide the <code>em</code> method and <code>factory</code> val.
+ * </p>
  *
  * @author Derek Chen-Becker
  */
-abstract class ScalaEntityManager {
-  // The concrete impl should provide these methods
-  
-  /**
-   * Handles the actual opening of an EntityManager. Subclasses must
-   * provide a concrete implementation.
-   *
-   * @return An appropriately configured EntityManager
-   */
-  protected def openEM () : EntityManager
-
-  /**
-   * Handles closing a previously opened EntityManager. Subclasses must
-   * provide a concrete implementation.
-   */
-  protected def closeEM (em : EntityManager) : Unit
-
+trait ScalaEntityManager {
   /**
    * Returns the current EntityManager instance. This leaves the
    * implementor free to choose how they want to manage instances. For
@@ -51,17 +42,28 @@ abstract class ScalaEntityManager {
    */
   protected def em : EntityManager
 
+  /**
+   * This val should hold a reference to the factory that created
+   * this instance, so that the proper closeEM method can be called
+   * on shutdown.
+   */
+  val factory : ScalaEMFactory
+
   // value added methods
    
   /**
-   * Returns a List[A] of the results of excuting the given query.
+   * <p>
+   * Returns a <code>List[A]</code> of the results of excuting the given query.
    * Named parameters
    * may be provided to refine the query. Using Scala's syntax sugar for
    * Pairs and varargs, an example query might look like:
+   * </p>
    *
+   * <p>
    * <code>
    *   EM.findAll[User]("byUsername", "username" -> "fred")
    * </code>
+   * </p>
    *
    * @param queryName The name of the query to execute
    * @param params Zero or more pairs of (paramName,paramValue)
@@ -77,10 +79,12 @@ abstract class ScalaEntityManager {
    * extended functionality of ScalaQuery, such as pagination or using
    * query hints. An example would be:
    *
+   * <p>
    * <code>
    *   val query = EM.createNamedQuery[Book]("findAllBooks")
    *   query.setFirstResult(20).setMaxResults(100)
    * </code>
+   * </p>
    *
    * @param queryName The name of the query to execute
    * @param params Zero or more pairs of (paramName,paramValue)
@@ -244,7 +248,7 @@ abstract class ScalaEntityManager {
    * Closes the EntityManager. Subclasses may override this if they
    * desire different behavior.
    */
-  def close() = closeEM(em)
+  def close() = factory.closeEM(em)
 
   /**
    * Returns a boolean indicating whether the EntityManager is open.

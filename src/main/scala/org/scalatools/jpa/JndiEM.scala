@@ -1,5 +1,5 @@
 /*
- * Copyright 2008 WorldWide Conferencing, LLC
+ * Copyright 2008 Derek Chen-Becker
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,13 +22,24 @@ import _root_.javax.transaction.{Status,UserTransaction}
 
 /**
  * This class represents an EntityManager that is retrieved from JNDI.
+ *
+ * @param jndiName The full JNDI binding for the managed EntityManager, such
+ * as "java:comp/env/persistence/myem".
+ * 
+ * @author Derek Chen-Becker
  */
-abstract class JndiEM(val jndiName : String) extends ScalaEntityManager {
+abstract class JndiEM(val jndiName : String) extends ScalaEMFactory {
+  /**
+   * Holds an InitialContext for use with JNDI.
+   */
   lazy val ctxt = new InitialContext()
 
+  /**
+   * Returns the current UserTransaction retrieved from JNDI.
+   */
   def tx = ctxt.lookup("java:comp/UserTransaction").asInstanceOf[UserTransaction]
 
-  val txStatus = Map(Status.STATUS_ACTIVE -> "ACTIVE",
+  private val txStatus = Map(Status.STATUS_ACTIVE -> "ACTIVE",
 		     Status.STATUS_COMMITTED -> "COMMITTED",
 		     Status.STATUS_COMMITTING -> "COMMITTING",
 		     Status.STATUS_MARKED_ROLLBACK -> "MARKED_ROLLBACK",
@@ -39,7 +50,10 @@ abstract class JndiEM(val jndiName : String) extends ScalaEntityManager {
 		     Status.STATUS_ROLLEDBACK -> "ROLLEDBACK",
 		     Status.STATUS_UNKNOWN -> "UNKNOWN")
 
-  override def openEM () = {
+  /**
+   * Retrieves an EntityManager via JNDI and associates it with a JTA transaction.
+   */
+  def openEM () = {
     // JNDI EMs want an existing JTA transaction
     tx.begin()
 
@@ -48,7 +62,11 @@ abstract class JndiEM(val jndiName : String) extends ScalaEntityManager {
     em
   }
 
-  override def closeEM (em : EntityManager) = {
+  /**
+   * Closes the given EntityManager and commits the transaction if it hasn't been marked
+   * for rollback.
+   */
+  def closeEM (em : EntityManager) = {
     em.close()
 
     /* We only want to commit if we haven't already thrown an exception (due to a constraint violation, etc)

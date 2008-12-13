@@ -1,5 +1,5 @@
 /*
- * Copyright 2008 WorldWide Conferencing, LLC
+ * Copyright 2008 Derek Chen-Becker
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,7 +21,8 @@ import _root_.java.util.{Date,Calendar}
 
 /**
  * This class represents a Scalafied version of the JPA Query class. Big
- * features include better type safety and returning results as Lists.
+ * features include better type safety and returning results as Lists. Instances
+ * of this class should be obtained via a ScalaEntityManager instance.
  *
  * @author Derek Chen-Becker
  */

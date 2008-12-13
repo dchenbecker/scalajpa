@@ -4,6 +4,7 @@
   <artifactId>ScalaJPA</artifactId>
   <version>1.0-SNAPSHOT</version>
   <inceptionYear>2008</inceptionYear>
+  <name>Scala JPA Utility Framework</name>
 
   <description>
     This module provides some basic classes to simplify using JPA (Java
@@ -106,13 +107,13 @@
       <groupId>net.liftweb</groupId>
       <artifactId>lift-core</artifactId>
       <version>0.10-SNAPSHOT</version>
-      <scope>test</scope>
+      <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>net.liftweb</groupId>
       <artifactId>lift-util</artifactId>
       <version>0.10-SNAPSHOT</version>
-      <scope>test</scope>
+      <scope>provided</scope>
     </dependency>
   </dependencies>
 

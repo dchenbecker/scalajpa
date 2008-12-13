@@ -1,18 +1,28 @@
-
+/*
+ * Copyright 2008 Derek Chen-Becker
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions
+ * and limitations under the License.
+ */
 
 package org.scalatools.jpatest
 
 import javax.persistence.EntityManager
-import org.scalatools.jpa.LocalEM
+
 import net.liftweb.http.RequestVar
 import net.liftweb.util.Full
 
-object Model extends LocalEM("test") {
-  object emVar extends RequestVar[EntityManager](openEM) {
-    override def cleanupFunc = Full(() => closeEM(this.is))
-  }
+import org.scalatools.jpa._
 
-  protected def em = emVar.is
+object Model extends LocalEM("test") with RequestVarEM
 
-  def getEm = em
-}
+object ThreadEM extends LocalEM("test") with ThreadLocalEM
