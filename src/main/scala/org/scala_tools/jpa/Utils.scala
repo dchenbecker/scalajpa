@@ -13,16 +13,21 @@
  * See the License for the specific language governing permissions
  * and limitations under the License.
  */
+package org.scala_tools.jpa
 
-package org.scalatools.jpatest
+import _root_.javax.persistence.NoResultException
 
-import javax.persistence.EntityManager
-
-import net.liftweb.http.RequestVar
-import net.liftweb.util.Full
-
-import org.scalatools.jpa._
-
-object Model extends LocalEM("test") with RequestVarEM
-
-object ThreadEM extends LocalEM("test") with ThreadLocalEM
+object Utils {
+  /**
+   * Used to handle find quirkiness
+   */
+  private[jpa] def findToOption[A](f: => A): Option[A] = 
+    try {  
+      f match {
+        case null => None
+        case found => Some(found)
+      }
+    } catch {
+      case e: NoResultException => None
+    }
+}

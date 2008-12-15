@@ -14,7 +14,7 @@
  * and limitations under the License.
  */
 
-package org.scalatools.jpa
+package org.scala_tools.jpa
 
 import javax.persistence.EntityManager
 

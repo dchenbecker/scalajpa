@@ -1,7 +1,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.scala-tools</groupId>
-  <artifactId>ScalaJPA</artifactId>
+  <artifactId>scalajpa</artifactId>
   <version>1.0-SNAPSHOT</version>
   <inceptionYear>2008</inceptionYear>
   <name>Scala JPA Utility Framework</name>
@@ -40,12 +40,12 @@
 
   <ciManagement>
     <system>hudson</system>
-    <url>http://scala-tools.org/hudson/job/ScalaJPA/</url>
+    <url>http://scala-tools.org/hudson/job/scalajpa/</url>
   </ciManagement>
 
   <scm>
-    <connection>scm:git://github.com/dchenbecker/ScalaJPA.git</connection>
-    <url>http://github.com/dchenbecker/ScalaJPA/tree/master</url>
+    <connection>scm:git://github.com/dchenbecker/scalajpa.git</connection>
+    <url>http://github.com/dchenbecker/scalajpa/tree/master</url>
   </scm>
 
   <properties>
