@@ -13,15 +13,27 @@
  * See the License for the specific language governing permissions
  * and limitations under the License.
  */
-package org.scala_tools.jpa
+package org.scala_libs.jpa
 
 import _root_.javax.persistence.{EntityManager,Persistence}
 
 /**
- * This class represents an EntityManager that is retrieved via the
+ * <p>This class represents an EntityManager factory that is retrieved via the
  * javax.persistence.Persistence factory class. Typically this is
- * used in an environment that doesn't support JNDI. The userTx param
- * 
+ * used in an environment that doesn't support JNDI. An example of
+ * usage would be:</p>
+ *
+ * <pre>
+ * object FooEM extends LocalEMF("foo")
+ *
+ * ...
+ *
+ * def doSomething = {
+ *   val em = FooEM.newEM
+ *   ...
+ *   em.close()
+ * }
+ * </pre>
  *
  * @author Derek Chen-Becker
  *
@@ -30,7 +42,7 @@ import _root_.javax.persistence.{EntityManager,Persistence}
  * <code>true</code> means that the user will begin and end transactions,
  * <code>false</code> means that the LocalEM will handle it for the user.
  */
-class LocalEM(val unitName : String, val userTx : Boolean) extends ScalaEMFactory {
+class LocalEMF(val unitName : String, val userTx : Boolean) extends ScalaEMFactory {
   
   /**
    * Creates a new EM manager that handles its own transactions.

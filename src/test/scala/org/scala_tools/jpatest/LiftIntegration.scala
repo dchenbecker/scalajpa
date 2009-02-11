@@ -14,15 +14,15 @@
  * and limitations under the License.
  */
 
-package org.scala_tools.jpa.test
+package org.scala_libs.jpa.test
 
 import javax.persistence.EntityManager
 
 import net.liftweb.http.RequestVar
 import net.liftweb.util.Full
 
-import org.scala_tools.jpa._
+import org.scala_libs.jpa._
 
-object Model extends LocalEM("test") with RequestVarEM
+object Model extends LocalEMF("test") with RequestVarEM
 
-object ThreadEM extends LocalEM("test") with ThreadLocalEM
+object ThreadEM extends LocalEMF("test") with ThreadLocalEM

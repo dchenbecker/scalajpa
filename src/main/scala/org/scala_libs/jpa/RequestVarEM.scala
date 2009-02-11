@@ -14,12 +14,12 @@
  * and limitations under the License.
  */
 
-package org.scala_tools.jpa
+package org.scala_libs.jpa
 
-import javax.persistence.EntityManager
+import _root_.javax.persistence.EntityManager
 
-import net.liftweb.http.RequestVar
-import net.liftweb.util.Full
+import _root_.net.liftweb.http.RequestVar
+import _root_.net.liftweb.util.Full
 
 /**
  * This trait provides specific functionality for the Lift web framework
@@ -30,7 +30,7 @@ import net.liftweb.util.Full
  *
  * <p>
  * <code>
- * object Model extends LocalEM("test") with RequestVarEM
+ * object Model extends LocalEMF("test") with RequestVarEM
  * </code>
  * </p>
  *

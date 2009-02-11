@@ -13,14 +13,28 @@
  * See the License for the specific language governing permissions
  * and limitations under the License.
  */
-package org.scala_tools.jpa
+package org.scala_libs.jpa
 
 import _root_.javax.persistence._
 
 /**
  * This trait defines the operations for obtaining and properly closing
  * an EntityManager. The purpose of this trait is to allow interception
- * and ancillary processing on EM setup and teardown.
+ * and ancillary processing on EM setup and teardown. Typical usage of a
+ * concrete impl (called EMImpl in this example) would be:
+ *
+ * <pre>
+ * object FooEM extends EMImpl(...)
+ *
+ * ...
+ *
+ * def doSomething = {
+ *   val em = FooEM.newEM
+ *   ...
+ *   em.close()
+ * }
+ * </pre>
+ * 
  *
  * @author Derek Chen-Becker
  */
@@ -42,7 +56,8 @@ trait ScalaEMFactory {
   protected[jpa] def closeEM (em : EntityManager) : Unit
 
   /**
-   * Returns a newly created <code>ScalaEntityManager</code>
+   * Returns a newly created <code>ScalaEntityManager</code>. This is the method
+   * that clients would typically use to obtain their EM.
    *
    * @return A new <code>ScalaEntityManager</code> instance.
    */

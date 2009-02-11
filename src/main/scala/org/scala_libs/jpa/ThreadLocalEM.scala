@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions
  * and limitations under the License.
  */
-package org.scala_tools.jpa
+package org.scala_libs.jpa
 
 import _root_.javax.persistence.EntityManager
 
@@ -22,9 +22,16 @@ import _root_.javax.persistence.EntityManager
  * access to EntityManager instances on a thread-local basis.
  * An example would be:
  *
- * <code>
- * object MyEM extends LocalEM("test") with ThreadLocalEM;
- * </code>
+ * <pre>
+ * object MyEM extends LocalEMF("test") with ThreadLocalEM
+ *
+ * ...
+ * MyEM.createNamedQuery(...)
+ *
+ * MyEM.cleanup()
+ * ...
+ * 
+ * </pre>
  *
  * Best practice for this code is to ensure that when the
  * thread exits it calls the cleanup method so that the EM is properly closed.

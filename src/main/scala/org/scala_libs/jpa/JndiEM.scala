@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions
  * and limitations under the License.
  */
-package org.scala_tools.jpa
+package org.scala_libs.jpa
 
 import _root_.javax.persistence._
 
@@ -21,14 +21,28 @@ import _root_.javax.naming.InitialContext
 import _root_.javax.transaction.{Status,UserTransaction}
 
 /**
- * This class represents an EntityManager that is retrieved from JNDI.
+ * <p>This class represents an EntityManager factory that is retrieved from JNDI, using JTA
+ * to handle transactions. An example of usage would be:</p>
+ *
+ * <pre>
+ * object FooEM extends JndiEMF("java:/myEM")
+ *
+ * ...
+ *
+ * def doSomething = {
+ *   val em = FooEM.newEM
+ *   ...
+ *   em.close()
+ * }
+ * </pre>
+ * 
  *
  * @param jndiName The full JNDI binding for the managed EntityManager, such
  * as "java:comp/env/persistence/myem".
  * 
  * @author Derek Chen-Becker
  */
-abstract class JndiEM(val jndiName : String) extends ScalaEMFactory {
+class JndiEMF(val jndiName : String) extends ScalaEMFactory {
   /**
    * Holds an InitialContext for use with JNDI.
    */
