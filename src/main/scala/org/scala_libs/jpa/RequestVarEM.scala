@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions
  * and limitations under the License.
  */
-
 package org.scala_libs.jpa
 
 import _root_.javax.persistence.EntityManager
@@ -42,7 +41,7 @@ trait RequestVarEM extends ScalaEntityManager with ScalaEMFactory {
    * for each request.
    */
   object emVar extends RequestVar[EntityManager](openEM()) {
-    override def cleanupFunc = Full(() => closeEM(this.is))
+    this.registerGlobalCleanupFunc(ignore => closeEM(this.is))
   }
 
   // Must be provided to properly implement ScalaEntityManager
