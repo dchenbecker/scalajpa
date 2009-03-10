@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.scala-libs</groupId>
   <artifactId>scalajpa</artifactId>
-  <version>1.0</version>
+  <version>1.1-SNAPSHOT</version>
   <inceptionYear>2008</inceptionYear>
   <name>Scala JPA Utility Framework</name>
 
@@ -106,14 +106,14 @@
     <dependency>
       <groupId>net.liftweb</groupId>
       <artifactId>lift-core</artifactId>
-      <version>1.0</version>
+      <version>1.1-SNAPSHOT</version>
       <scope>provided</scope>
       <optional>true</optional>
     </dependency>
     <dependency>
       <groupId>net.liftweb</groupId>
       <artifactId>lift-util</artifactId>
-      <version>1.0</version>
+      <version>1.1-SNAPSHOT</version>
       <scope>provided</scope>
       <optional>true</optional>
     </dependency>
