@@ -48,6 +48,13 @@
     <url>http://github.com/dchenbecker/scalajpa/tree/master</url>
   </scm>
 
+ <distributionManagement>
+   <repository>
+     <id>scala-tools.org</id>
+     <url>http://scala-tools.org:8081/nexus/content/repositories/releases</url>
+   </repository>
+ </distributionManagement>
+
   <properties>
     <scala.version>2.7.3</scala.version>
   </properties>
