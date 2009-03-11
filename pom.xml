@@ -53,6 +53,15 @@
      <id>scala-tools.org</id>
      <url>http://scala-tools.org:8081/nexus/content/repositories/releases</url>
    </repository>
+   <snapshotRepository>
+     <id>scala-tools.org</id>
+     <url>http://scala-tools.org:8081/nexus/content/repositories/snapshots</url>
+     <uniqueVersion>true</uniqueVersion>
+   </snapshotRepository>
+   <site>
+     <id>scala-tools.org</id>
+     <url>http://scala-tools.org:8081/nexus/content/repositories/mvnsites/${project.artifactId}</url>
+   </site>
  </distributionManagement>
 
   <properties>
