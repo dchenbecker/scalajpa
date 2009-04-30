@@ -126,13 +126,6 @@
       <scope>provided</scope>
       <optional>true</optional>
     </dependency>
-    <dependency>
-      <groupId>net.liftweb</groupId>
-      <artifactId>lift-util</artifactId>
-      <version>1.1-SNAPSHOT</version>
-      <scope>provided</scope>
-      <optional>true</optional>
-    </dependency>
   </dependencies>
 
   <build>
