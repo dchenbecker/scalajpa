@@ -18,11 +18,6 @@ package org.scala_libs.jpa.test
 
 import javax.persistence.EntityManager
 
-import net.liftweb.http.RequestVar
-import net.liftweb.util.Full
-
 import org.scala_libs.jpa._
-
-object Model extends LocalEMF("test") with RequestVarEM
 
 object ThreadEM extends LocalEMF("test") with ThreadLocalEM

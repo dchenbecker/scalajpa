@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.scala-libs</groupId>
   <artifactId>scalajpa</artifactId>
-  <version>1.1-SNAPSHOT</version>
+  <version>1.1</version>
   <inceptionYear>2008</inceptionYear>
   <name>Scala JPA Utility Framework</name>
 
@@ -40,7 +40,7 @@
 
   <ciManagement>
     <system>hudson</system>
-    <url>http://scala-tools.org/hudson/job/scalajpa/</url>
+    <url>http://hudson.scala-tools.org/job/scalajpa/</url>
   </ciManagement>
 
   <scm>
@@ -51,21 +51,21 @@
  <distributionManagement>
    <repository>
      <id>scala-tools.org</id>
-     <url>http://scala-tools.org:8081/nexus/content/repositories/releases</url>
+     <url>http://nexus.scala-tools.org/content/repositories/releases</url>
    </repository>
    <snapshotRepository>
      <id>scala-tools.org</id>
-     <url>http://scala-tools.org:8081/nexus/content/repositories/snapshots</url>
+     <url>http://nexus.scala-tools.org/content/repositories/snapshots</url>
      <uniqueVersion>true</uniqueVersion>
    </snapshotRepository>
    <site>
      <id>scala-tools.org</id>
-     <url>http://scala-tools.org:8081/nexus/content/repositories/mvnsites/${project.artifactId}</url>
+     <url>http://nexus.scala-tools.org/content/repositories/mvnsites/${project.artifactId}</url>
    </site>
  </distributionManagement>
 
   <properties>
-    <scala.version>2.7.3</scala.version>
+    <scala.version>2.7.4</scala.version>
   </properties>
 
   <repositories>
@@ -119,13 +119,6 @@
       <version>1.0-M1</version>
       <scope>provided</scope>
     </dependency> 
-    <dependency>
-      <groupId>net.liftweb</groupId>
-      <artifactId>lift-core</artifactId>
-      <version>1.1-SNAPSHOT</version>
-      <scope>provided</scope>
-      <optional>true</optional>
-    </dependency>
   </dependencies>
 
   <build>
