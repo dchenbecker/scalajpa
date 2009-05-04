@@ -31,7 +31,7 @@ class ScalaQuery[A](val query: Query) {
   // value added methods
   
   /**
-   * Returns the results of the query as a <code>List[A]</code>.
+   * Returns the results of the query as a <code>Seq[A]</code>.
    */
   def findAll = getResultList()
 
@@ -54,7 +54,7 @@ class ScalaQuery[A](val query: Query) {
 
   // methods defined on Query
   /**
-   * Returns the results of the query as a List[A]
+   * Returns the results of the query as a Seq[A]
    */
   def getResultList() = Conversions.convertList[A](query.getResultList.asInstanceOf[java.util.List[A]])
 
