@@ -77,12 +77,9 @@ class JndiEMF(val jndiName : String) extends ScalaEMFactory {
   }
 
   /**
-   * Closes the given EntityManager and commits the transaction if it hasn't been marked
-   * for rollback.
+   * Commits the transaction if it hasn't been marked for rollback.
    */
   def closeEM (em : EntityManager) = {
-    em.close()
-
     /* We only want to commit if we haven't already thrown an exception (due to a constraint violation, etc)
      */
     try {
