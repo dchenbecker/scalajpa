@@ -83,5 +83,7 @@ class LocalEMF(val unitName : String, val userTx : Boolean) extends ScalaEMFacto
 
     em.close()
   }
+
+  def getUnitName = unitName
 }
 

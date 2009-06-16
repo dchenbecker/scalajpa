@@ -91,5 +91,8 @@ class JndiEMF(val jndiName : String) extends ScalaEMFactory {
       }
     }
   }
+
+  // Simply return the JNDI name as the Persistence Unit name
+  def getUnitName = jndiName
 }
 

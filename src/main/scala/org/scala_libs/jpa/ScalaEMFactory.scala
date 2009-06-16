@@ -69,4 +69,9 @@ trait ScalaEMFactory {
       val factory = owner
     }
   }
+  
+  /**
+   * Return the name of the configured persistence unit name
+   */
+  protected def getUnitName : String
 }
