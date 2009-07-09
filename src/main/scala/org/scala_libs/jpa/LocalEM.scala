@@ -85,5 +85,11 @@ class LocalEMF(val unitName : String, val userTx : Boolean) extends ScalaEMFacto
   }
 
   def getUnitName = unitName
+
+  /**
+   * Closes the underlying EMF. This should be called to release any held
+   * resources to prevent memory leaks.
+   */
+  def shutdownEMF = emf.close()
 }
 
