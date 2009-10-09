@@ -42,17 +42,44 @@ import _root_.javax.persistence.{EntityManager,Persistence}
  * <code>true</code> means that the user will begin and end transactions,
  * <code>false</code> means that the LocalEM will handle it for the user.
  */
-class LocalEMF(val unitName : String, val userTx : Boolean) extends ScalaEMFactory {
+class LocalEMF(val unitName : String, val userTx : Boolean, properties : Option[java.util.Map[_,_]]) extends ScalaEMFactory {
+  /**
+   * Creates a new EM manager with the specified transaction management and
+   * configuration properties. This is a convenience constructor so that you're
+   * not required to pass an Option.
+   * 
+   * @param unitName The persistence unit name that this EM should represent
+   * @param userTx controls whether the user is responsible for handling transactions.
+   * <code>true</code> means that the user will begin and end transactions,
+   * <code>false</code> means that the LocalEM will handle it for the user.
+   * @param properties A map containing additional properties to use when creating
+   * the factory.
+   */
+  def this(unitName : String, userTx : Boolean, properties : java.util.Map[_,_]) = 
+    this(unitName, userTx, Some(properties))
+  
+  /**
+   * Creates a new EM manager with the specified transaction management.
+   * 
+   *  * @param unitName The persistence unit name that this EM should represent
+   * @param userTx controls whether the user is responsible for handling transactions.
+   * <code>true</code> means that the user will begin and end transactions,
+   * <code>false</code> means that the LocalEM will handle it for the user.
+   */
+  def this(unitName : String, userTx : Boolean) = this(unitName, userTx, None)
   
   /**
    * Creates a new EM manager that handles its own transactions.
    * 
    * @param unitName The persistence unit name that this EM should represent
    */
-  def this(unitName : String) = this(unitName, false)
+  def this(unitName : String) = this(unitName, false, None)
 
   // The underlying entitymanager factory
-  private val emf = Persistence.createEntityManagerFactory(unitName)
+  private val emf = properties match {
+    case None => Persistence.createEntityManagerFactory(unitName)
+    case Some(props) => Persistence.createEntityManagerFactory(unitName, props)
+  }
 
   /**
    * Opens an <code>EntityManager</code> retrieved from the <code>EntityManagerFactory</code>
