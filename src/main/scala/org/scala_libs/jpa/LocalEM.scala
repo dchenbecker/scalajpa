@@ -42,7 +42,7 @@ import _root_.javax.persistence.{EntityManager,Persistence}
  * <code>true</code> means that the user will begin and end transactions,
  * <code>false</code> means that the LocalEM will handle it for the user.
  */
-class LocalEMF(val unitName : String, val userTx : Boolean, properties : Option[java.util.Map[_,_]]) extends ScalaEMFactory {
+class LocalEMF(val unitName : String, val userTx : Boolean, properties : Option[Map[_,_]]) extends ScalaEMFactory {
   /**
    * Creates a new EM manager with the specified transaction management and
    * configuration properties. This is a convenience constructor so that you're
@@ -55,7 +55,7 @@ class LocalEMF(val unitName : String, val userTx : Boolean, properties : Option[
    * @param properties A map containing additional properties to use when creating
    * the factory.
    */
-  def this(unitName : String, userTx : Boolean, properties : java.util.Map[_,_]) = 
+  def this(unitName : String, userTx : Boolean, properties : Map[_,_]) = 
     this(unitName, userTx, Some(properties))
   
   /**
@@ -78,7 +78,15 @@ class LocalEMF(val unitName : String, val userTx : Boolean, properties : Option[
   // The underlying entitymanager factory
   private val emf = properties match {
     case None => Persistence.createEntityManagerFactory(unitName)
-    case Some(props) => Persistence.createEntityManagerFactory(unitName, props)
+    case Some(props) => Persistence.createEntityManagerFactory(unitName, unmap(props))
+  }
+  
+  private def unmap[A,B](input : Map[A,B]) : java.util.Map[A,B] = {
+    val output = new java.util.HashMap[A,B]()
+    
+    input.keys.foreach { key => output.put(key, input(key))}
+    
+    output
   }
 
   /**
