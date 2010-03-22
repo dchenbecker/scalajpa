@@ -51,8 +51,11 @@ trait ThreadLocalEM extends ScalaEntityManager with ScalaEMFactory {
    * removing the em from the thread-local storage.
    */
   def cleanup() : Unit = {
-    closeEM(em)
-    cache.remove()
+    try {
+      closeEM(em)
+    } finally {
+      cache.remove()
+    }
   }
 }
       
