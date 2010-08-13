@@ -16,7 +16,7 @@
 package org.scala_libs.jpa
 
 import _root_.javax.persistence._
-import _root_.scala.collection.jcl.Conversions
+import _root_.scala.collection.JavaConversions
 import _root_.java.util.{Date,Calendar}
 
 /**
@@ -56,7 +56,7 @@ class ScalaQuery[A](val query: Query) {
   /**
    * Returns the results of the query as a Seq[A]
    */
-  def getResultList() = Conversions.convertList[A](query.getResultList.asInstanceOf[java.util.List[A]])
+  def getResultList() = JavaConversions.asBuffer[A](query.getResultList.asInstanceOf[java.util.List[A]])
 
   /**
    * Returns a single result of the query as an Option. If more than one
