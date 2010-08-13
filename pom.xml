@@ -1,8 +1,8 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.scala-libs</groupId>
-  <artifactId>scalajpa</artifactId>
-  <version>1.2-SNAPSHOT</version>
+  <artifactId>scalajpa_2.7.7</artifactId>
+  <version>1.2</version>
   <inceptionYear>2008</inceptionYear>
   <name>Scala JPA Utility Framework</name>
 
@@ -102,9 +102,9 @@
       <scope>test</scope>
     </dependency>
     <dependency>
-      <groupId>org.specs</groupId>
+      <groupId>org.scala-tools.testing</groupId>
       <artifactId>specs</artifactId>
-      <version>1.2.5</version>
+      <version>1.6.2.2</version>
       <scope>test</scope>
     </dependency>
     <dependency>
