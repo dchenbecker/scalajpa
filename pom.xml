@@ -11,7 +11,7 @@
     Persistence) under Scala.
   </description>
 
-  <url>http://scala-tools.org/mvnsites/ScalaJPA</url>
+  <url>http://scala-tools.org/mvnsites/scalajpa</url>
 
   <organization>
     <name>scala-tools.org</name>
@@ -20,7 +20,7 @@
 
   <licenses>
     <license>
-      <name>the Apache License, ASL Version 2.0</name>
+      <name>Apache License, ASL Version 2.0</name>
       <url>http://www.apache.org/licenses/LICENSE-2.0</url>
       <distribution>repo</distribution>
     </license>
@@ -40,8 +40,13 @@
 
   <ciManagement>
     <system>hudson</system>
-    <url>http://hudson.scala-tools.org/job/scalajpa/</url>
+    <url>http://hudson.scala-tools.org/job/scalajpa-2.8.0/</url>
   </ciManagement>
+
+  <issueManagement>
+    <system>GitHub</system>
+    <url>http://github.com/dchenbecker/scalajpa/issues</url>
+  </issueManagement>
 
   <scm>
     <connection>scm:git://github.com/dchenbecker/scalajpa.git</connection>
