@@ -6,3 +6,9 @@ target/
 .settings/
 lib_managed/
 project/boot/
+
+
+# IDEA-generated stuff
+*.iml
+*.ipr
+*.iws
