@@ -15,7 +15,7 @@
  */
 package org.scala_libs.jpa
 
-import _root_.javax.persistence.{EntityManager,Persistence}
+import javax.persistence.{EntityManager,Persistence}
 
 /**
  * <p>This class represents an EntityManager factory that is retrieved via the

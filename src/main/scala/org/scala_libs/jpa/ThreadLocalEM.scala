@@ -15,7 +15,7 @@
  */
 package org.scala_libs.jpa
 
-import _root_.javax.persistence.EntityManager
+import javax.persistence.EntityManager
 
 /**
  * This trait can be mixed in so that an object may provide

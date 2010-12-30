@@ -15,7 +15,7 @@
  */
 package org.scala_libs.jpa
 
-import _root_.javax.persistence._
+import javax.persistence._
 
 /**
  * <p>

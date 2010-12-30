@@ -15,7 +15,7 @@
  */
 package org.scala_libs.jpa
 
-import _root_.javax.persistence.NoResultException
+import javax.persistence.NoResultException
 
 object Utils {
   /**

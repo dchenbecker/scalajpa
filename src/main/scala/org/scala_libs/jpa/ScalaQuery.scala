@@ -15,9 +15,9 @@
  */
 package org.scala_libs.jpa
 
-import _root_.javax.persistence._
-import _root_.scala.collection.JavaConversions
-import _root_.java.util.{Date,Calendar}
+import javax.persistence._
+import scala.collection.JavaConversions
+import java.util.{Date,Calendar}
 
 /**
  * This class represents a Scalafied version of the JPA Query class. Big

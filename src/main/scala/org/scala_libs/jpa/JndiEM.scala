@@ -15,10 +15,10 @@
  */
 package org.scala_libs.jpa
 
-import _root_.javax.persistence._
+import javax.persistence._
 
-import _root_.javax.naming.InitialContext
-import _root_.javax.transaction.{Status,UserTransaction}
+import javax.naming.InitialContext
+import javax.transaction.{Status,UserTransaction}
 
 /**
  * <p>This class represents an EntityManager factory that is retrieved from JNDI, using JTA
