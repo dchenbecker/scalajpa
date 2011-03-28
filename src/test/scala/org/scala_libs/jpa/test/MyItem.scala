@@ -1,5 +1,5 @@
 /*
- * Copyright 2008 Derek Chen-Becker
+ * Copyright 2011 Derek Chen-Becker
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,11 +13,20 @@
  * See the License for the specific language governing permissions
  * and limitations under the License.
  */
-
 package org.scala_libs.jpa.test
 
-import javax.persistence.EntityManager
+import javax.persistence.{NamedQuery, Basic, Entity, Id}
 
-import org.scala_libs.jpa._
+/**
+ * A simple item to test EM setup and usage
+ */
+@Entity
+@NamedQuery(name = "AllItems", query = "from MyItem")
+class MyItem {
+  @Id
+  var id : Long = 0l
 
-object ThreadEM extends LocalEMF("test") with ThreadLocalEM
+  var name : String = ""
+
+  var description : String = ""
+}
