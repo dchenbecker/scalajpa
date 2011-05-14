@@ -23,8 +23,8 @@ class ScalaJPAProject(info : ProjectInfo) extends DefaultProject(info) with Idea
   val logback = "ch.qos.logback" % "logback-classic" % "0.9.27" % "test"
 
   override def managedStyle = ManagedStyle.Maven
-  //val publishTo = scalaToolsSnapshots
-  val publishTo = scalaToolsReleases
+  val publishTo = scalaToolsSnapshots
+  //val publishTo = scalaToolsReleases
 
   Credentials(Path.userHome / ".ivy2" / ".credentials", log)
 
