@@ -11,6 +11,7 @@ class ScalaJPAProject(info : ProjectInfo) extends DefaultProject(info) with Idea
   lazy val (scalazVersion, specsVersion, scalacheckVersion) = buildScalaVersion match {
     case "2.8.0"     => ("5.0", "1.6.5",   "1.7")
     case "2.8.1"     => ("5.0", "1.6.7.2", "1.8")
+    case "2.9.1"     => ("5.0", "1.6.9", "1.9")
     case _           => ("5.0", "1.6.8",   "1.8")
   }
 
