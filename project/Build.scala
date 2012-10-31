@@ -1,6 +1,6 @@
 import sbt._
 import Keys._
-import com.jsuereth.pgp.sbtplugin.PgpKeys._
+import com.typesafe.sbt.pgp.PgpKeys._
 
 object ScalaJPABuild extends Build {
   val fullSettings: Seq[Project.Setting[_]] = Seq(
@@ -10,40 +10,37 @@ object ScalaJPABuild extends Build {
 
     version := "1.4",
 
-    crossScalaVersions := Seq("2.8.0", "2.8.1", "2.9.0", "2.9.0-1", "2.9.1", "2.9.2"),
+    crossScalaVersions := Seq("2.8.0", "2.8.1", "2.9.0", "2.9.0-1", "2.9.1", "2.9.2", "2.10.0-RC1"),
 
     resolvers ++= Seq(
       "Jboss Public Repository" at "http://repository.jboss.org/nexus/content/groups/public-jboss/",
       "Typesafe Repository"     at "http://repo.typesafe.com/typesafe/releases/",
       "Maven Repo 1"            at "http://repo1.maven.org/maven2/",
       "Guiceyfruit"             at "http://guiceyfruit.googlecode.com/svn/repo/releases/",
-      "Sonatype Snapshots"      at "https://oss.sonatype.org/content/repositories/snapshots/"
+      "Sonatype Snapshots"      at "https://oss.sonatype.org/content/repositories/snapshots/",
+      "sbt-plugin-releases"     at "http://scalasbt.artifactoryonline.com/scalasbt/sbt-plugin-releases/"
     ),
     
-    libraryDependencies <<= (scalaVersion) { sv => {
+    libraryDependencies <++= (scalaVersion) { sv => {
       val specsVersion = sv match {
-        case "2.8.0"             => "1.6.5"
-        case "2.8.1"             => "1.6.7"
-        case "2.9.0" | "2.9.0-1" => "1.6.8"
-        case _                   => "1.6.9"
+        case "2.8.0" | "2.8.1" | "2.8.2" | "2.9.0" => "1.5"
+        case "2.9.0-1" => "1.8.2"  
+        case _         => "1.12.2"
       }
 
-      val specsScalaVersion = sv match {
-        case "2.9.2" => "specs_2.9.1"
-        case other   => "specs_" + other
-      }
-      
       Seq(
         "javax.persistence" % "persistence-api" % "1.0" % "provided",
         "geronimo-spec" % "geronimo-spec-jta" % "1.0-M1" % "provided",
         "com.h2database" % "h2" % "1.3.152" % "test",
         "org.hibernate" % "hibernate-entitymanager" % "3.4.0.GA" % "test",
-        "org.scala-tools.testing" % specsScalaVersion % specsVersion % "test",
+        if (sv == "2.10.0-RC1") {
+          "org.specs2" % "specs2_2.10.0-RC1" % "1.13-SNAPSHOT" % "test"
+        } else {
+          "org.specs2" %% "specs2" % specsVersion % "test"
+        },
         "ch.qos.logback" % "logback-classic" % "0.9.27" % "test"
       )
     }},
-
-    useGpg := true,
 
     publishMavenStyle := true,
 
@@ -56,6 +53,8 @@ object ScalaJPABuild extends Build {
       else
         Some("releases"  at nexus + "service/local/staging/deploy/maven2")
     },
+
+    credentials += Credentials(Path.userHome / ".ivy2" / "sonatype.credentials"),
 
     publishArtifact in Test := false,
 
