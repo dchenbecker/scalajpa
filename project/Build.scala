@@ -10,7 +10,11 @@ object ScalaJPABuild extends Build {
 
     version := "1.4",
 
+    description := "This module provides some basic classes to simplify using JPA (Java Persistence) under Scala.",
+
     crossScalaVersions := Seq("2.8.0", "2.8.1", "2.9.0", "2.9.0-1", "2.9.1", "2.9.2", "2.10.0-RC1"),
+
+    scalaBinaryVersion <<= scalaVersion,
 
     resolvers ++= Seq(
       "Jboss Public Repository" at "http://repository.jboss.org/nexus/content/groups/public-jboss/",
@@ -61,12 +65,6 @@ object ScalaJPABuild extends Build {
     pomExtra :=
       <xml:group>
         <inceptionYear>2008</inceptionYear>
-        <name>Scala JPA Utility Framework</name>
-      
-        <description>
-          This module provides some basic classes to simplify using JPA (Java
-          Persistence) under Scala.
-        </description>
       
         <url>https://github.com/dchenbecker/scalajpa</url>
       
