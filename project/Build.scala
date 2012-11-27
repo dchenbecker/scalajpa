@@ -12,7 +12,7 @@ object ScalaJPABuild extends Build {
 
     description := "This module provides some basic classes to simplify using JPA (Java Persistence) under Scala.",
 
-    crossScalaVersions := Seq("2.8.0", "2.8.1", "2.9.0", "2.9.0-1", "2.9.1", "2.9.2", "2.10.0-RC1"),
+    crossScalaVersions := Seq("2.8.0", "2.8.1", "2.9.0", "2.9.0-1", "2.9.1", "2.9.2", "2.10.0-RC1", "2.10.0-RC2"),
 
     scalaBinaryVersion <<= scalaVersion,
 
