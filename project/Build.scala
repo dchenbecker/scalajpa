@@ -12,16 +12,18 @@ object ScalaJPABuild extends Build {
 
     description := "This module provides some basic classes to simplify using JPA (Java Persistence) under Scala.",
 
-    crossScalaVersions := Seq("2.8.0", "2.8.1", "2.9.0", "2.9.0-1", "2.9.1", "2.9.2", "2.10.0-RC1", "2.10.0-RC2", "2.10.0-RC3", "2.10.0-RC5"),
+    crossScalaVersions := Seq("2.8.0", "2.8.1", "2.9.0", "2.9.0-1", "2.9.1", "2.9.2", "2.10.0"),
 
-    scalaBinaryVersion <<= scalaVersion,
+    // Only for RC releases
+    //scalaBinaryVersion <<= scalaVersion,
 
     resolvers ++= Seq(
+      "Sonatype Release"        at "https://oss.sonatype.org/content/repositories/releases/",
+      "Sonatype Snapshots"      at "https://oss.sonatype.org/content/repositories/snapshots/",
       "Jboss Public Repository" at "http://repository.jboss.org/nexus/content/groups/public-jboss/",
       "Typesafe Repository"     at "http://repo.typesafe.com/typesafe/releases/",
       "Maven Repo 1"            at "http://repo1.maven.org/maven2/",
       "Guiceyfruit"             at "http://guiceyfruit.googlecode.com/svn/repo/releases/",
-      "Sonatype Snapshots"      at "https://oss.sonatype.org/content/repositories/snapshots/",
       "sbt-plugin-releases"     at "http://scalasbt.artifactoryonline.com/scalasbt/sbt-plugin-releases/"
     ),
     
@@ -29,7 +31,7 @@ object ScalaJPABuild extends Build {
       val specsVersion = sv match {
         case "2.8.0" | "2.8.1" | "2.8.2" | "2.9.0" => "1.5"
         case "2.9.0-1"                             => "1.8.2"
-        case "2.10.0-RC1" | "2.10.0-RC2"           => "1.12.2"
+        case "2.10.0"                                => "1.13"
         case _                                     => "1.12.3"
       }
 
@@ -38,11 +40,7 @@ object ScalaJPABuild extends Build {
         "geronimo-spec" % "geronimo-spec-jta" % "1.0-M1" % "provided",
         "com.h2database" % "h2" % "1.3.152" % "test",
         "org.hibernate" % "hibernate-entitymanager" % "3.4.0.GA" % "test",
-        if (sv == "2.10.0-RC1") {
-          "org.specs2" % "specs2_2.10.0-RC1" % "1.13-SNAPSHOT" % "test"
-        } else {
-          "org.specs2" %% "specs2" % specsVersion % "test"
-        },
+        "org.specs2" %% "specs2" % specsVersion % "test",
         "ch.qos.logback" % "logback-classic" % "0.9.27" % "test"
       )
     }},
