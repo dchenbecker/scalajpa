@@ -8,11 +8,11 @@ object ScalaJPABuild extends Build {
 
     organization := "org.scala-libs",
 
-    version := "1.4",
+    version := "1.5",
 
     description := "This module provides some basic classes to simplify using JPA (Java Persistence) under Scala.",
 
-    crossScalaVersions := Seq("2.8.0", "2.8.1", "2.9.0", "2.9.0-1", "2.9.1", "2.9.2", "2.10.0"),
+    crossScalaVersions := Seq("2.9.0", "2.9.0-1", "2.9.1", "2.9.2", "2.10.0", "2.11.0"),
 
     // Only for RC releases
     //scalaBinaryVersion <<= scalaVersion,
@@ -29,10 +29,11 @@ object ScalaJPABuild extends Build {
     
     libraryDependencies <++= (scalaVersion) { sv => {
       val specsVersion = sv match {
-        case "2.8.0" | "2.8.1" | "2.8.2" | "2.9.0" => "1.5"
-        case "2.9.0-1"                             => "1.8.2"
-        case "2.10.0"                                => "1.13"
-        case _                                     => "1.12.3"
+        case "2.9.0"   => "1.5"
+        case "2.9.0-1" => "1.8.2"
+        case "2.10.0"  => "1.13"
+        case "2.11.0"  => "2.3.11"
+        case _         => "1.12.3"
       }
 
       Seq(

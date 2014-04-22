@@ -16,7 +16,7 @@
 package org.scala_libs.jpa
 
 import javax.persistence._
-import scala.collection.JavaConversions
+import scala.collection.JavaConverters._
 import java.util.{Date,Calendar}
 
 /**
@@ -56,7 +56,7 @@ class ScalaQuery[A](val query: Query) {
   /**
    * Returns the results of the query as a Seq[A]
    */
-  def getResultList() = new JavaConversions.JListWrapper[A](query.getResultList.asInstanceOf[java.util.List[A]]) // JListWrapper used directly to accomodate 2.8.0 -> 2.8.1 changes
+  def getResultList() = query.getResultList.asInstanceOf[java.util.List[A]].asScala
 
   /**
    * Returns a single result of the query as an Option. If more than one
