@@ -17,7 +17,7 @@
 package org.scala_libs.jpa
 package test
 
-import org.specs.Specification
+import org.specs2.mutable.Specification
 
 /**
  * A simple EM defined in our test/resources
@@ -26,20 +26,18 @@ object ThreadEM extends LocalEMF("test") with ThreadLocalEM
 
 class ScalaJPASpecs extends Specification {
   "The 'test' LocalEMF instance" should {
-    shareVariables()
-
+    sequential
     val myInstance = new MyItem
     myInstance.id = 42
     myInstance.name = "Fred"
     myInstance.description = "Some guy"
 
-
     "Persist a new instance" in {
-      ThreadEM.contains(myInstance) mustBe false
+      ThreadEM.contains(myInstance) mustEqual false
 
       ThreadEM.persistAndFlush(myInstance)
 
-      ThreadEM.contains(myInstance) mustBe true
+      ThreadEM.contains(myInstance) mustEqual true
     }
 
     "Retrieve an instance using a raw query" in {
@@ -57,11 +55,11 @@ class ScalaJPASpecs extends Specification {
     }
 
     "Remove an instance" in {
-      ThreadEM.contains(myInstance) mustBe true
+      ThreadEM.contains(myInstance) mustEqual true
 
       ThreadEM.removeAndFlush(myInstance)
 
-      ThreadEM.contains(myInstance) mustBe false
+      ThreadEM.contains(myInstance) mustEqual false
     }
   }
 }
