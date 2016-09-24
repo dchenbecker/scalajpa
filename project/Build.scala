@@ -12,7 +12,7 @@ object ScalaJPABuild extends Build {
 
     description := "This module provides some basic classes to simplify using JPA (Java Persistence) under Scala.",
 
-    crossScalaVersions := Seq("2.9.0", "2.9.0-1", "2.9.1", "2.9.2", "2.10.0", "2.11.0"),
+    crossScalaVersions := Seq("2.10.6", "2.11.8", "2.12.0"),
 
     // Only for RC releases
     //scalaBinaryVersion <<= scalaVersion,
@@ -28,20 +28,12 @@ object ScalaJPABuild extends Build {
     ),
     
     libraryDependencies <++= (scalaVersion) { sv => {
-      val specsVersion = sv match {
-        case "2.9.0"   => "1.5"
-        case "2.9.0-1" => "1.8.2"
-        case "2.10.0"  => "1.13"
-        case "2.11.0"  => "2.3.11"
-        case _         => "1.12.3"
-      }
-
       Seq(
         "javax.persistence" % "persistence-api" % "1.0" % "provided",
         "geronimo-spec" % "geronimo-spec-jta" % "1.0-M1" % "provided",
         "com.h2database" % "h2" % "1.3.152" % "test",
         "org.hibernate" % "hibernate-entitymanager" % "3.4.0.GA" % "test",
-        "org.specs2" %% "specs2" % specsVersion % "test",
+        "org.specs2" %% "specs2-core" % "3.8.6" % "test",
         "ch.qos.logback" % "logback-classic" % "0.9.27" % "test"
       )
     }},
