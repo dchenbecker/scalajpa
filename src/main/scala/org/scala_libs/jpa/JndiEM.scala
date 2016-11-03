@@ -1,5 +1,5 @@
 /*
- * Copyright 2008-2009 Derek Chen-Becker
+ * Copyright 2008-2016 Derek Chen-Becker
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -82,13 +82,10 @@ class JndiEMF(val jndiName : String) extends ScalaEMFactory {
   def closeEM (em : EntityManager) = {
     /* We only want to commit if we haven't already thrown an exception (due to a constraint violation, etc)
      */
-    try {
-      if (tx.getStatus() == Status.STATUS_MARKED_ROLLBACK) {
-	tx.rollback()
-      } else if (tx.getStatus() == Status.STATUS_ACTIVE) {
-	tx.commit()
-      } else {
-      }
+    if (tx.getStatus() == Status.STATUS_MARKED_ROLLBACK) {
+      tx.rollback()
+    } else if (tx.getStatus() == Status.STATUS_ACTIVE) {
+      tx.commit()
     }
   }
 

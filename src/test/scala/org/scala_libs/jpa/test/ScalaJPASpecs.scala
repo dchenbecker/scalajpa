@@ -1,5 +1,5 @@
 /*
- * Copyright 2008-2011 Derek Chen-Becker
+ * Copyright 2008-2016 Derek Chen-Becker
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,8 +25,9 @@ import org.specs2.mutable.Specification
 object ThreadEM extends LocalEMF("test") with ThreadLocalEM
 
 class ScalaJPASpecs extends Specification {
+  sequential
+
   "The 'test' LocalEMF instance" should {
-    sequential
     val myInstance = new MyItem
     myInstance.id = 42
     myInstance.name = "Fred"

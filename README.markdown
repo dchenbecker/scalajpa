@@ -13,7 +13,7 @@ and that you license the work to the ScalaJPA project under the project's
 
 # License
 
-Copyright &copy; 2008-2010 Derek Chen-Becker 
+Copyright &copy; 2008-2016 Derek Chen-Becker 
 
 Licensed under the Apache License, Version 2.0 (the "License"); 
 you may not use this file except in compliance with the License.
