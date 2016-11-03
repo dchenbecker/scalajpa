@@ -3,7 +3,7 @@ import Keys._
 import com.typesafe.sbt.pgp.PgpKeys._
 
 object ScalaJPABuild extends Build {
-  val fullSettings: Seq[Project.Setting[_]] = Seq(
+  val fullSettings = Seq(
     name := "ScalaJPA",
 
     organization := "org.scala-libs",
@@ -26,13 +26,13 @@ object ScalaJPABuild extends Build {
       "Guiceyfruit"             at "http://guiceyfruit.googlecode.com/svn/repo/releases/",
       "sbt-plugin-releases"     at "http://scalasbt.artifactoryonline.com/scalasbt/sbt-plugin-releases/"
     ),
-    
+
     libraryDependencies <++= (scalaVersion) { sv => {
       Seq(
         "javax.persistence" % "persistence-api" % "1.0" % "provided",
         "geronimo-spec" % "geronimo-spec-jta" % "1.0-M1" % "provided",
         "com.h2database" % "h2" % "1.3.152" % "test",
-        "org.hibernate" % "hibernate-entitymanager" % "3.4.0.GA" % "test",
+        "org.hibernate" % "hibernate-entitymanager" % "5.2.3.Final" % "test",
         "org.specs2" %% "specs2-core" % "3.8.6" % "test",
         "ch.qos.logback" % "logback-classic" % "0.9.27" % "test"
       )
@@ -44,8 +44,8 @@ object ScalaJPABuild extends Build {
 
     publishTo <<= version { (v: String) =>
       val nexus = "https://oss.sonatype.org/"
-      if (v.trim.endsWith("SNAPSHOT")) 
-        Some("snapshots" at nexus + "content/repositories/snapshots") 
+      if (v.trim.endsWith("SNAPSHOT"))
+        Some("snapshots" at nexus + "content/repositories/snapshots")
       else
         Some("releases"  at nexus + "service/local/staging/deploy/maven2")
     },
@@ -57,9 +57,9 @@ object ScalaJPABuild extends Build {
     pomExtra :=
       <xml:group>
         <inceptionYear>2008</inceptionYear>
-      
+
         <url>https://github.com/dchenbecker/scalajpa</url>
-      
+
         <licenses>
           <license>
             <name>Apache License, ASL Version 2.0</name>
@@ -67,7 +67,7 @@ object ScalaJPABuild extends Build {
             <distribution>repo</distribution>
           </license>
         </licenses>
-      
+
         <developers>
           <developer>
             <id>dchenbecker</id>
@@ -79,20 +79,20 @@ object ScalaJPABuild extends Build {
             </roles>
           </developer>
         </developers>
-            
+
         <issueManagement>
           <system>GitHub</system>
           <url>http://github.com/dchenbecker/scalajpa/issues</url>
         </issueManagement>
-      
+
         <scm>
           <connection>scm:git:git@github.com:dchenbecker/scalajpa.git</connection>
           <url>http://github.com/dchenbecker/scalajpa/tree/master</url>
         </scm>
-      
+
       </xml:group>
-      
+
   )
 
-  val scalajpa = Project(id = "ScalaJPA", base = file("."), settings = (Project.defaultSettings ++ fullSettings))
+  val scalajpa = Project(id = "ScalaJPA", base = file("."), settings = (Defaults.coreDefaultSettings ++ fullSettings))
 }
