@@ -1,6 +1,5 @@
 import sbt._
 import Keys._
-// import com.typesafe.sbt.pgp.PgpKeys._
 
 name := "ScalaJPA"
 
@@ -14,15 +13,15 @@ crossScalaVersions := Seq("2.12.0", "2.13.1")
 // Only for RC releases
 //scalaBinaryVersion <<= scalaVersion,
 
-// resolvers ++= Seq(
-//   "Sonatype Release"        at "https://oss.sonatype.org/content/repositories/releases/",
-//   "Sonatype Snapshots"      at "https://oss.sonatype.org/content/repositories/snapshots/",
-//   "Jboss Public Repository" at "http://repository.jboss.org/nexus/content/groups/public-jboss/",
-//   "Typesafe Repository"     at "http://repo.typesafe.com/typesafe/releases/",
-//   "Maven Repo 1"            at "http://repo1.maven.org/maven2/",
-//   "Guiceyfruit"             at "http://guiceyfruit.googlecode.com/svn/repo/releases/",
-//   "sbt-plugin-releases"     at "http://scalasbt.artifactoryonline.com/scalasbt/sbt-plugin-releases/"
-// )
+resolvers ++= Seq(
+  "Sonatype Release"        at "https://oss.sonatype.org/content/repositories/releases/",
+  "Sonatype Snapshots"      at "https://oss.sonatype.org/content/repositories/snapshots/",
+  "Jboss Public Repository" at "https://repository.jboss.org/nexus/content/groups/public-jboss/",
+  "Typesafe Repository"     at "https://repo.typesafe.com/typesafe/releases/",
+  "Maven Repo 1"            at "https://repo1.maven.org/maven2/",
+  "Guiceyfruit"             at "https://guiceyfruit.googlecode.com/svn/repo/releases/",
+  "sbt-plugin-releases"     at "https://scalasbt.artifactoryonline.com/scalasbt/sbt-plugin-releases/"
+)
 
 libraryDependencies ++= Seq(
   // https://mvnrepository.com/artifact/javax.persistence/javax.persistence-api
@@ -38,15 +37,15 @@ publishMavenStyle := true
 
 pomIncludeRepository := { _ => false }
 
-// publishTo <<= version { (v: String) =>
-//   val nexus = "https://oss.sonatype.org/"
-//   if (v.trim.endsWith("SNAPSHOT"))
-//     Some("snapshots" at nexus + "content/repositories/snapshots")
-//   else
-//     Some("releases"  at nexus + "service/local/staging/deploy/maven2")
-// }
+publishTo := { 
+  val nexus = "https://oss.sonatype.org/"
+  if (isSnapshot.value)
+    Some("snapshots" at nexus + "content/repositories/snapshots")
+  else
+    Some("releases"  at nexus + "service/local/staging/deploy/maven2")
+}
 
-// credentials += Credentials(Path.userHome / ".ivy2" / "sonatype.credentials")
+credentials += Credentials(Path.userHome / ".ivy2" / "sonatype.credentials")
 
 publishArtifact in Test := false
 
@@ -89,5 +88,3 @@ pomExtra :=
   </xml:group>
 
 val scalajpa = Project(id = "ScalaJPA", base = file("."))
-
-// ScalaJPA / Test / classLoaderLayeringStrategy := ClassLoaderLayeringStrategy.ScalaLibrary
