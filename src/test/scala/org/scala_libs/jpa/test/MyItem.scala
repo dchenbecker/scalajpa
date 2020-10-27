@@ -21,7 +21,7 @@ import javax.persistence.{NamedQuery, Basic, Entity, Id}
  * A simple item to test EM setup and usage
  */
 @Entity
-@NamedQuery(name = "AllItems", query = "from MyItem")
+@NamedQuery(name = "AllItems", query = "FROM MyItem")
 class MyItem {
   @Id
   var id : Long = 0l

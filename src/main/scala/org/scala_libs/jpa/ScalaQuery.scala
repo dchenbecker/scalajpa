@@ -50,7 +50,7 @@ class ScalaQuery[A](val query: Query) {
    *   query.setParams("name" -> "fred", "age" -> 12)
    * </code>
    */
-  def setParams(params : Pair[String,Any]*) = {params.foreach(param => query.setParameter(param._1, param._2)); this}
+  def setParams(params : (String, Any)*) = {params.foreach(param => query.setParameter(param._1, param._2)); this}
 
   // methods defined on Query
   /**
@@ -126,8 +126,4 @@ class ScalaQuery[A](val query: Query) {
    * Sets the flush mode for the current query.
    */
   def setFlushMode(flushMode: FlushModeType) = {query.setFlushMode(flushMode); this}
-
 }
-
-
-

@@ -1,3 +1,9 @@
+.metals
+.bloop
+.bsp
+project/metals.sbt
+
+
 target/
 *~
 .classpath
