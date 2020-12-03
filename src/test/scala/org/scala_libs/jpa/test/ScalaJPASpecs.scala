@@ -19,13 +19,16 @@ package test
 
 import org.specs2.mutable.Specification
 
-/**
- * A simple EM defined in our test/resources
- */
-object ThreadEM extends LocalEMF("test") with ThreadLocalEM
-
 class ScalaJPASpecs extends Specification {
   sequential
+
+  /**
+    * A simple EM defined in our test/resources
+    */
+  object ThreadEM extends LocalEMF("test") with ScalaEntityManager with ScalaEMFactory {
+    val em = openEM()
+    val factory = this
+  }
 
   "The 'test' LocalEMF instance" should {
     val myInstance = new MyItem

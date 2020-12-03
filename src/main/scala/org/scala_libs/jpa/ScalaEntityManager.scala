@@ -71,7 +71,7 @@ trait ScalaEntityManager {
    * @return A List[A] representing the results of the query
    * 
    */
-  def findAll[A](queryName : String, params : Pair[String,Any]*) = createAndParamify[A](queryName, params).findAll
+  def findAll[A](queryName : String, params : (String, Any)*) = createAndParamify[A](queryName, params).findAll
 
   /**
    * Creates a ScalaQuery representing the given named query with the given
@@ -91,13 +91,13 @@ trait ScalaEntityManager {
    *
    * @return The created ScalaQuery[A]
    */
-  def createNamedQuery[A](queryName : String, params : Pair[String,Any]*) : ScalaQuery[A] = createAndParamify[A](queryName,params)
+  def createNamedQuery[A](queryName : String, params : (String,Any)*) : ScalaQuery[A] = createAndParamify[A](queryName, params)
 
   /*
    * Worker for the previous two methods to handle creating
    * the query and then setting the parameters.
    */
-  private def createAndParamify[A](queryName : String, params : Seq[Pair[String,Any]]) : ScalaQuery[A] = {
+  private def createAndParamify[A](queryName : String, params : Seq[(String, Any)]) : ScalaQuery[A] = {
     val q = createNamedQuery[A](queryName)
     params.foreach(param => q.setParameter(param._1, param._2))
     q

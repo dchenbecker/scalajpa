@@ -58,5 +58,3 @@ trait ThreadLocalEM extends ScalaEntityManager with ScalaEMFactory {
     }
   }
 }
-      
-  
